@@ -1,7 +1,8 @@
 import 'dart:io';
 
 main() {
-  String altura = stdin.readLineSync();
-  int alturaX = int.parse(altura);
+  var altura = stdin.readLineSync();
+  int alturaX = int.parse(altura.toString());
+  alturaX += 3;
   print(alturaX);
 }
