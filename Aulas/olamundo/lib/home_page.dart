@@ -12,24 +12,34 @@ class HomePageState extends State<HomePage> {
   int contador = 0;
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('App flutter ADS'),
-        ),
-        body: Center(
-          child: Center(
-              child: GestureDetector(
-            child: Text(
-              'Click: $contador',
-              style: TextStyle(fontSize: 50),
-            ),
-            onTap: () {
-              setState(() {
-                contador++;
-                print(contador);
-              });
-            },
-          )),
-        ));
+      appBar: AppBar(
+        title: Text('App flutter ADS'),
+      ),
+      body: Center(
+        child: Center(
+            child: GestureDetector(
+          child: Text(
+            'Click: $contador',
+            style: TextStyle(fontSize: 50),
+          ),
+          onTap: () {
+            setState(() {
+              contador++;
+              //print(contador);
+            });
+          },
+        )),
+      ),
+      //botões são inseridos no rodapé.
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_circle),
+        onPressed: () {
+          setState(() {
+            contador--;
+          });
+        },
+      ),
+    );
     throw UnimplementedError();
   }
 }
