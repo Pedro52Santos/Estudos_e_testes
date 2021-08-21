@@ -11,18 +11,25 @@ class HomePageState extends State<HomePage> {
   @override
   int contador = 0;
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: GestureDetector(
-        child: Text('Click: $contador'),
-        onTap: () {
-          setState(() {
-            contador++;
-            print(contador);
-          });
-        },
-      )),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('App flutter ADS'),
+        ),
+        body: Center(
+          child: Center(
+              child: GestureDetector(
+            child: Text(
+              'Click: $contador',
+              style: TextStyle(fontSize: 50),
+            ),
+            onTap: () {
+              setState(() {
+                contador++;
+                print(contador);
+              });
+            },
+          )),
+        ));
     throw UnimplementedError();
   }
 }
