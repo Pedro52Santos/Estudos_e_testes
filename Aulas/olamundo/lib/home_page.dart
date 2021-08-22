@@ -15,20 +15,10 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('App flutter ADS'),
       ),
-      body: Center(
-        child: Center(
-            child: GestureDetector(
-          child: Text(
-            'Click: $contador',
-            style: TextStyle(fontSize: 50),
-          ),
-          onTap: () {
-            setState(() {
-              contador++;
-              //print(contador);
-            });
-          },
-        )),
+      body: Container(
+        height: 50,
+        width: 50,
+        color: Colors.red,
       ),
       //botões são inseridos no rodapé.
       floatingActionButton: FloatingActionButton(
@@ -43,3 +33,20 @@ class HomePageState extends State<HomePage> {
     throw UnimplementedError();
   }
 }
+
+/*
+Center(
+        child: Center(
+            child: GestureDetector(
+          child: Text(
+            'Click: $contador',
+            style: TextStyle(fontSize: 50),
+          ),
+          onTap: () {
+            setState(() {
+              contador++;
+              //print(contador);
+            });
+          },
+        )), 
+ */
