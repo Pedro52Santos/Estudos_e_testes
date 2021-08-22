@@ -11,15 +11,23 @@ class HomePageState extends State<HomePage> {
   @override
   int contador = 0;
   Widget build(BuildContext context) {
+    var container = Container(
+        height: 150,
+        width: 150,
+        color: Colors.red,
+        child: Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 50,
+              width: 50,
+              color: Colors.cyan,
+              child: Icon(Icons.download),
+            )));
     return Scaffold(
       appBar: AppBar(
         title: Text('App flutter ADS'),
       ),
-      body: Container(
-        height: 50,
-        width: 50,
-        color: Colors.red,
-      ),
+      body: container, //é a variavel container declarada anteriormente
       //botões são inseridos no rodapé.
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle),
