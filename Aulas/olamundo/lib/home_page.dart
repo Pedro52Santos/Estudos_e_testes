@@ -10,23 +10,20 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   int contador = 0;
+  bool isDark = false;
   Widget build(BuildContext context) {
-    var container = Container(
-        height: 150,
-        width: 150,
-        color: Colors.red,
-        child: Center(
-            child: Container(
-          height: 50,
-          width: 50,
-          color: Colors.cyan,
-          child: Icon(Icons.download),
-        )));
     return Scaffold(
       appBar: AppBar(
         title: Text('App flutter ADS'),
       ),
-      body: container, //é a variavel container declarada anteriormente
+      body: Center(
+        child: Switch(
+          value: isDark,
+          onChanged: (value) {
+            print(value);
+          },
+        ),
+      ), //é a variavel container declarada anteriormente
       //botões são inseridos no rodapé.
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle),
@@ -57,3 +54,17 @@ Center(
           },
         )), 
  */
+
+
+
+/*var container = Container(
+        height: 150,
+        width: 150,
+        color: Colors.red,
+        child: Center(
+            child: Container(
+          height: 50,
+          width: 50,
+          color: Colors.cyan,
+          child: Icon(Icons.download),
+        ))); */
