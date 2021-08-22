@@ -15,14 +15,13 @@ class HomePageState extends State<HomePage> {
         height: 150,
         width: 150,
         color: Colors.red,
-        child: Align(
-            alignment: Alignment.center,
+        child: Center(
             child: Container(
-              height: 50,
-              width: 50,
-              color: Colors.cyan,
-              child: Icon(Icons.download),
-            )));
+          height: 50,
+          width: 50,
+          color: Colors.cyan,
+          child: Icon(Icons.download),
+        )));
     return Scaffold(
       appBar: AppBar(
         title: Text('App flutter ADS'),
