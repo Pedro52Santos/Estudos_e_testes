@@ -22,6 +22,7 @@ class HomePageState extends State<HomePage> {
         width: double.infinity,
         height: double.infinity,
         child: ListView(
+          scrollDirection: Axis.vertical,
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(child: CustomSwitch()),
