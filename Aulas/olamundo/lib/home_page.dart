@@ -18,8 +18,14 @@ class HomePageState extends State<HomePage> {
         title: Text('App flutter ADS'),
         actions: [CustomSwitch()],
       ),
-      body: Center(), //é a variavel container declarada anteriormente
-      //botões são inseridos no rodapé.
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Center(child: CustomSwitch())],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle),
         onPressed: () {
