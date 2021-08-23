@@ -22,47 +22,12 @@ class HomePageState extends State<HomePage> {
         width: double.infinity,
         height: double.infinity,
         child: ListView(
-          scrollDirection: Axis.vertical,
+          //scrollDirection: Axis.vertical,
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(child: CustomSwitch()),
             Container(
               height: 150,
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.amber,
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.amber,
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.amber,
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.amber,
-            ),
-            Container(
-              width: 50,
-              height: 450,
-              color: Colors.amber,
-            ),
-            Container(
-              width: 50,
-              height: 950,
-              color: Colors.blue,
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.amber,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
