@@ -12,7 +12,10 @@ class AppWidget extends StatelessWidget {
         builder: (BuildContext context, child) {
           return MaterialApp(
             theme: ThemeData(
-                primaryColor: Colors.purple, brightness: Brightness.dark),
+                primarySwatch: Colors.purple,
+                brightness: AppController.instance.isDark
+                    ? Brightness.dark
+                    : Brightness.light),
             home: HomePage(),
           );
         });
