@@ -16,17 +16,9 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('App flutter ADS'),
+        actions: [CustomSwitch()],
       ),
-      body: Center(
-        child: Switch(
-          value: AppController.instance.isDark,
-          onChanged: (value) {
-            setState(() {
-              AppController.instance.changeTheme();
-            });
-          },
-        ),
-      ), //é a variavel container declarada anteriormente
+      body: Center(), //é a variavel container declarada anteriormente
       //botões são inseridos no rodapé.
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle),
@@ -41,6 +33,16 @@ class HomePageState extends State<HomePage> {
   }
 }
 
+class CustomSwitch extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+        value: AppController.instance.isDark,
+        onChanged: (value) {
+          AppController.instance.changeTheme();
+        });
+  }
+}
 /*
 Center(
         child: Center(
