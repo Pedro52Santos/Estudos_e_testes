@@ -23,7 +23,33 @@ class HomePageState extends State<HomePage> {
         height: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Center(child: CustomSwitch())],
+          children: [
+            Center(child: CustomSwitch()),
+            Container(
+              height: 50,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.amber,
+                ),
+                Container(
+                  width: 150,
+                  height: 50,
+                  color: Colors.blueGrey,
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.redAccent,
+                ),
+              ],
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
