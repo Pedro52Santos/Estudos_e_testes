@@ -5,7 +5,6 @@ void main() {
   runApp(MyApp());
 }
 
-//-----------------------------------------------------------------10:02 apagar aqui!!!
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override

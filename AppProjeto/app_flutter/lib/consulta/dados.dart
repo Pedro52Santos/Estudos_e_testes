@@ -26,7 +26,7 @@ List<CategoriaModel> getCategorias() {
   //4
   categoriaModel.categoriaNome = 'Econômia';
   categoriaModel.imagemURL =
-      'https://www.remessaonline.com.br/blog/wp-content/uploads/2021/03/retomada-economia-Brasil.png';
+      'https://s2.glbimg.com/CRn0izUsu93VVZ_N9_gLoSk4OE8=/0x0:1273x824/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2021/m/B/9shvfqRiCFyyAw6XCDkA/economia-pos-pandemia.jpg';
   categoria.add(categoriaModel);
   categoriaModel = new CategoriaModel();
 

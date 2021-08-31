@@ -7,7 +7,6 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-//-----------------------------------------------------------18:36
 class _HomeState extends State<Home> {
   List<CategoriaModel> categorias = <CategoriaModel>[];
   @override
@@ -37,9 +36,12 @@ class _HomeState extends State<Home> {
         child: Column(
           children: <Widget>[
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              height: 70,
               child: ListView.builder(
                   itemCount: categorias.length,
                   shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return CategoriaBloco(
                       imagemURL: categorias[index].imagemURL,
@@ -59,14 +61,59 @@ class CategoriaBloco extends StatelessWidget {
   CategoriaBloco({this.imagemURL, this.categoriaNome});
   @override
   Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.only(right: 16),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              //https://api.flutter.dev/flutter/widgets/ClipRRect-class.html para deirar a borda circular como nos apps modernos
+              borderRadius: BorderRadius.circular(6),
+              child: Image.network(
+                imagemURL,
+                width: 120,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: 120,
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Colors.black26,
+              ),
+              child: Text(
+                categoriaNome,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BlogBloco extends StatelessWidget {
+  late final String imagemURL, titutlo, descricao;
+  BlogBloco(
+      {required this.descricao,
+      required this.imagemURL,
+      required this.titutlo});
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      child: Stack(
+      child: Column(
         children: <Widget>[
-          Image.network(
-            imagemURL,
-            width: 120,
-            height: 80,
-          )
+          Image.network(imagemURL),
+          Text(titutlo),
+          Text(descricao),
         ],
       ),
     );
