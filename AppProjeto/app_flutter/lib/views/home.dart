@@ -7,6 +7,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+//-----------------------------------------------------------18:36
 class _HomeState extends State<Home> {
   List<CategoriaModel> categorias = <CategoriaModel>[];
   @override
@@ -64,7 +65,7 @@ class CategoriaBloco extends StatelessWidget {
           Image.network(
             imagemURL,
             width: 120,
-            height: 120,
+            height: 80,
           )
         ],
       ),

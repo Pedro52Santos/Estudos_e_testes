@@ -1,8 +1,8 @@
 import 'package:app_flutter/models/categoria_model.dart';
 
 List<CategoriaModel> getCategorias() {
-  //14:13 pode ser a solução de um erro em categorias.
-  List<CategoriaModel> categoria = [];
+  List<CategoriaModel> categoria =
+      []; // lista de objetos do tipo modelo de categoria.
   CategoriaModel categoriaModel = new CategoriaModel();
 
   //1
