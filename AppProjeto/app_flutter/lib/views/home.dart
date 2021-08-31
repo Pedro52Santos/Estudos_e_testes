@@ -1,4 +1,6 @@
 import 'package:app_flutter/consulta/dados.dart';
+import 'package:app_flutter/consulta/noticias.dart';
+import 'package:app_flutter/models/artigo_model.dart';
 import 'package:app_flutter/models/categoria_model.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +11,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoriaModel> categorias = <CategoriaModel>[];
+  List<ArtigoModel> artigos = <ArtigoModel>[];
+  bool _carregar = true;
   @override
   void initState() {
     super.initState();
     categorias = getCategorias();
+    getNoticais();
+  }
+
+  getNoticais() async {
+    Noticias noticiasC = Noticias();
+    await noticiasC.getNoticias();
+    artigos = noticiasC.noticias;
+    setState(() {
+      _carregar = false;
+    });
   }
 
   @override
@@ -32,26 +46,47 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              height: 70,
-              child: ListView.builder(
-                  itemCount: categorias.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return CategoriaBloco(
-                      imagemURL: categorias[index].imagemURL,
-                      categoriaNome: categorias[index].categoriaNome,
-                    );
-                  }),
+      body: _carregar
+          ? Center(
+              child: Container(
+                child:
+                    CircularProgressIndicator(), //icone de circulo pra indicar carrgamento do app
+              ),
             )
-          ],
-        ),
-      ),
+          : Container(
+              child: Column(
+                children: <Widget>[
+                  //categorias
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 70,
+                    child: ListView.builder(
+                        itemCount: categorias.length,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return CategoriaBloco(
+                            imagemURL: categorias[index].imagemURL,
+                            categoriaNome: categorias[index].categoriaNome,
+                          );
+                        }),
+                  ),
+                  //noticias
+                  Container(
+                    child: ListView.builder(
+                        itemCount: artigos.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return BlogBloco(
+                            imagemURL: artigos[index].urldaimagem,
+                            titutlo: artigos[index].titulo,
+                            descricao: artigos[index].descricao,
+                          );
+                        }),
+                  )
+                ],
+              ),
+            ),
     );
   }
 }
