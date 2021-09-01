@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 class Noticias {
   List<ArtigoModel> noticias = [];
   Future<void> getNoticias() async {
-    String url =
-        "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7c93d02a8b8c4370a83d79c1220e5a6e";
+    dynamic url =
+        "https://newsapi.org/v2/top-headlines?country=br&category=business&apiKey=7c93d02a8b8c4370a83d79c1220e5a6e";
 
-    var response = await http.get(Uri.parse(url));
+    var response = await http.get(url);
     var jsonDados = jsonDecode(response.body);
     if (jsonDados['status'] == 'ok') {
       jsonDados['articles'].forEach((element) {
@@ -23,8 +23,6 @@ class Noticias {
             conteudo: element['context'],
           );
           noticias.add(artigoModel);
-        } else {
-          print('erro numeor 1.');
         }
       });
     }

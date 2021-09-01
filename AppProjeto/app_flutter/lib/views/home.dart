@@ -2,6 +2,8 @@ import 'package:app_flutter/consulta/dados.dart';
 import 'package:app_flutter/consulta/noticias.dart';
 import 'package:app_flutter/models/artigo_model.dart';
 import 'package:app_flutter/models/categoria_model.dart';
+import 'package:app_flutter/views/artigo_view.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -17,13 +19,14 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     categorias = getCategorias();
-    getNoticais();
+    getNoticias();
   }
 
-  getNoticais() async {
+  getNoticias() async {
     Noticias noticiasC = Noticias();
     await noticiasC.getNoticias();
     artigos = noticiasC.noticias;
+
     setState(() {
       _carregar = false;
     });
@@ -38,7 +41,7 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             Text('Noticias '),
             Text(
-              'Brasil',
+              'Pedro',
               style: TextStyle(color: Colors.green),
             )
           ],
@@ -53,38 +56,44 @@ class _HomeState extends State<Home> {
                     CircularProgressIndicator(), //icone de circulo pra indicar carrgamento do app
               ),
             )
-          : Container(
-              child: Column(
-                children: <Widget>[
-                  //categorias
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    height: 70,
-                    child: ListView.builder(
-                        itemCount: categorias.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return CategoriaBloco(
-                            imagemURL: categorias[index].imagemURL,
-                            categoriaNome: categorias[index].categoriaNome,
-                          );
-                        }),
-                  ),
-                  //noticias
-                  Container(
-                    child: ListView.builder(
-                        itemCount: artigos.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return BlogBloco(
-                            imagemURL: artigos[index].urldaimagem,
-                            titutlo: artigos[index].titulo,
-                            descricao: artigos[index].descricao,
-                          );
-                        }),
-                  )
-                ],
+          : SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: <Widget>[
+                    //categorias
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      height: 70,
+                      child: ListView.builder(
+                          itemCount: categorias.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return CategoriaBloco(
+                              imagemURL: categorias[index].imagemURL,
+                              categoriaNome: categorias[index].categoriaNome,
+                            );
+                          }),
+                    ),
+                    //noticias
+                    Container(
+                      padding: EdgeInsets.only(top: 16),
+                      child: ListView.builder(
+                          itemCount: artigos.length,
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return BlogBloco(
+                              imagemURL: artigos[index].urldaimagem,
+                              titutlo: artigos[index].titulo,
+                              descricao: artigos[index].descricao,
+                              url: artigos[index].url,
+                            );
+                          }),
+                    )
+                  ],
+                ),
               ),
             ),
     );
@@ -105,8 +114,8 @@ class CategoriaBloco extends StatelessWidget {
             ClipRRect(
               //https://api.flutter.dev/flutter/widgets/ClipRRect-class.html para deirar a borda circular como nos apps modernos
               borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                imagemURL,
+              child: CachedNetworkImage(
+                imageUrl: imagemURL,
                 width: 120,
                 height: 80,
                 fit: BoxFit.cover,
@@ -136,20 +145,49 @@ class CategoriaBloco extends StatelessWidget {
 }
 
 class BlogBloco extends StatelessWidget {
-  late final String imagemURL, titutlo, descricao;
+  late final String imagemURL, url, titutlo, descricao;
   BlogBloco(
       {required this.descricao,
+      required this.url,
       required this.imagemURL,
       required this.titutlo});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Image.network(imagemURL),
-          Text(titutlo),
-          Text(descricao),
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ArtigoView(
+                      noticiaURL: url,
+                    )));
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 16),
+        child: Column(
+          children: <Widget>[
+            ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.network(imagemURL)),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              titutlo,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              descricao,
+              style: TextStyle(color: Colors.grey),
+            ),
+          ],
+        ),
       ),
     );
   }
