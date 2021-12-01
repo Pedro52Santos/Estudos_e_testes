@@ -5,7 +5,7 @@ class User {
   final String avatarURL;
 
   const User({
-    required this.id, //Se der erro voltar aqui para testes.
+    this.id = '', //Se der erro voltar aqui para testes.
     required this.name,
     required this.email,
     required this.avatarURL,

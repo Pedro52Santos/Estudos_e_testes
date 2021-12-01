@@ -20,7 +20,8 @@ class Users with ChangeNotifier {
   }
 
   void put(User user) {
-    if (user == Null) {
+    // ignore: unnecessary_null_comparison
+    if (user == null) {
       return;
     }
     // ignore: unnecessary_null_comparison
@@ -43,10 +44,7 @@ class Users with ChangeNotifier {
   }
 
   void remove(User user) {
-    // ignore: unnecessary_null_comparison
-    if (user != null && user.id != null) {
-      _items.remove(user.id);
-      notifyListeners();
-    }
+    _items.remove(user.id);
+    notifyListeners();
   }
 }

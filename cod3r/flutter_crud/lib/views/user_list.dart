@@ -5,11 +5,9 @@ import 'package:flutter_crud/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 class UserList extends StatelessWidget {
-  const UserList({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    final Users users = Provider.of(context);
+    final Users users = Provider.of(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de Usuários'),

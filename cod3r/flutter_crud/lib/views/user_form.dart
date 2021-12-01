@@ -4,22 +4,18 @@ import 'package:flutter_crud/provider/users.dart';
 import 'package:provider/provider.dart';
 
 class UserForm extends StatelessWidget {
-  final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
-
+  final _form = GlobalKey<FormState>();
   // ignore: unused_element
   void _loadFormData(User user) {
-    if (user != null) {
-      _formData['id'] = user.id;
-      _formData['name'] = user.name;
-      _formData['email'] = user.email;
-      _formData['avatarURL'] = user.avatarURL;
-    }
+    _formData['id'] = user.id;
+    _formData['name'] = user.name;
+    _formData['email'] = user.email;
+    _formData['avatarURL'] = user.avatarURL;
   }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     final user = ModalRoute.of(context)!.settings.arguments as User;
     return Scaffold(
       appBar: AppBar(
